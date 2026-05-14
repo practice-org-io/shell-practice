@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "Trying to install Nginx..."
-
 USERID=$(id -u)
 
 if [ $USERID -ne 0 ]; then
@@ -9,12 +7,30 @@ if [ $USERID -ne 0 ]; then
     exit 1
 fi
 
+echo "Trying to install Nginx..."
+dnf install nginx -y
 
-dnf install nginix -y
-
-if [ $? -eq 0 ]; then
+if [ $? -ne 0 ]; then
     echo "Installing Nginx .... FAILURE"
     exit 1
 else
     echo "Installing Nginx .... SUCCESS"
+fi
+
+dnf install mysql -y
+
+if [ $? -ne 0 ]; then
+    echo "Installing MYSQL .... FAILURE"
+    exit 1
+else
+    echo "Installing MYSQL .... SUCCESS"
+fi
+
+dnf install nodejs -y
+
+if [ $? -ne 0 ]; then
+    echo "Installing NODEJS .... FAILURE"
+    exit 1
+else
+    echo "Installing NODEJS .... SUCCESS"
 fi
