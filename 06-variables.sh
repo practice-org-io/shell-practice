@@ -4,6 +4,6 @@ TIMESTAMP=$(date)
 
 echo "Script executed at: $TIMESTAMP"
 
-ps -ef
+free
 
 echo "End time: $TIMESTAMP"
