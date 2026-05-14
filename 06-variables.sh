@@ -2,7 +2,6 @@
 
 START_TIME=$(date +%s)
 
-echo "Script executed at: $TIMESTAMP"
 
 sleep 10
 
