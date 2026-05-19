@@ -6,19 +6,19 @@ Y="\e[33m"
 N="\e[0m"
 
 LOGS_DIR=/home/ec2-user/app-logs
-LOGS_FILE="$LOGS_DIR/$0.log"
+LOGS_FILE="$LOGS_DIR/$(basename "$0").log"
 
 if [ ! -d $LOGS_DIR ]; then
-    echo -e "$LOGS_DIR does not exist"
+    echo -e "$LOGS_DIR does not exitst"
     exit 1
 fi
 
 FILES_TO_DELETE=$(find $LOGS_DIR -name "*.log" -mtime +14)
-#echo "$FILES_TO_DELETE"
+# echo "$FILES_TO_DELETE"
 
-while IFS= read -r filepath; do 
-    # Process each line here
-    echo "Deleting file: $filepath"
-    rm -f $filepath
-    echo "Deleted file: $filepath"
-done <<< $FILE_TO_DELETE
+while IFS= read -r filepath; do
+      # Process each line here
+      echo "Deleting file: $filepath"
+      rm -f $filepath
+      echo "Deleted file: $filepath"
+    done <<< $FILES_TO_DELETE
