@@ -58,7 +58,7 @@ else
     TIMESTAMP=$(date +%F-%H-%M-%S)
     ZIP_FILE_NAME="$DEST_DIR/$app-logs-$TIMESTAMP.zip"
     echo "Archieve name: $ZIP_FILE_NAME"
-    find $SOURCE_DIR -name "*.log" type f -mtime +$DAYS | tar -zcvf $ZIP_FILE_NAME
+    tar -zcvf $ZIP_FILE_NAME $(find $SOURCE_DIR -name "*.log" type f -mtime +$DAYS)
 
     # Check archieve is success or not 
     if [ -f $ZIP_FILE_NAME ]; then
@@ -70,6 +70,6 @@ else
         echo "Deleted file: $filepath"
         done <<< $FILES
     else
-        log "Archeival is ... $G FAILURE $N"
+        log "Archeival is ... $R FAILURE $N"
         exit 1
 fi
